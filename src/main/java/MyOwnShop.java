@@ -97,7 +97,8 @@ public class MyOwnShop {
         }
         System.out.println( "¿Estas seguro?\n1. Si\n2. No" );
         int estado = sc.nextInt();
-        if (estado == 1){
+        if (estado == 1)
+        {
             NomProd[i - 1] = null;
             PrecProd[i - 1] = 0;
             ExistProd[i - 1] = 0;
