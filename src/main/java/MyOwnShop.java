@@ -94,7 +94,32 @@ public class MyOwnShop {
         System.out.println( "El total a pagar es: " + total);
     }
 
-    private static void ReportedeVentas() {
+    private static void ReportedeVentas()
+    {
+        System.out.println("Bienvenido al reporte de ventas");
+
+        String NomProduc;
+        int PrecProduc;
+        String[] arrventa = new String[100];
+        int desci;
+        do
+        {
+            System.out.println("Por favor ingresa el nombre del producto vendido:");
+            Scanner scanner = new Scanner(System.in);
+            NomProduc = scanner.next();
+            System.out.println("ingresa el precio del producto vendido:");
+            PrecProduc = scanner.nextInt();
+            System.out.println("¿deseas ingresar otro producto?\n1. si\n2. no");
+            desci = scanner.nextInt();
+            arrventa[i] = NomProduc +" "+ PrecProduc;
+            i++;
+        }
+        while (desci==1);
+        for (int e = 0; e<i; e++)
+        {
+            System.out.println(arrventa[e]);
+        }
+
     }
 
     private static void Inventario() {
