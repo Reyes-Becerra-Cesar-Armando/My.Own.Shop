@@ -22,10 +22,13 @@ public class MyOwnShop {
                 "                                                                                                           " );
         System.out.println( "---------------------------------------------------------------------------------------------------------------------------" );
         int opcMenu = 0;
-        while ( opcMenu != 4 ) {
+        while ( opcMenu != 4 )
+        {
+            System.out.println("Pruebas para ver si se hacen cambnios");
             System.out.println("¿A qué módulo deseas ingresar?\n1. Inventario\n2. Ventass\n3. Estadisticas\n4. Salir");
             opcMenu = sc.nextInt();
-            switch (opcMenu) {
+            switch (opcMenu)
+            {
                 case 1:
                     Inventario();
                     break;
@@ -43,25 +46,31 @@ public class MyOwnShop {
         }
     }
 
-    private static void Estadisticas() {
-        while ( Log == 0 ){
+    private static void Estadisticas()
+    {
+        while ( Log == 0 )
+        {
             LoginBasico();
         }
     }
 
-    private static void Ventas() {
+    private static void Ventas()
+    {
     }
 
-    private static void Inventario() {
+    private static void Inventario()
+    {
         Scanner sc = new Scanner(System.in);
         while ( Log == 0 ){
             LoginBasico();
         }
         int opcInventario = 0;
-        while (opcInventario != 4 ) {
+        while (opcInventario != 4 )
+        {
             System.out.println("¿Qué desea realizar?\n1. Ver productos\n2. Eliminar productos\n3. Gestionar inventario");
             opcInventario = sc.nextInt();
-            switch (opcInventario) {
+            switch (opcInventario)
+            {
                 case 1:
                     Productos();
                     break;
@@ -77,19 +86,23 @@ public class MyOwnShop {
         }
     }
 
-    private static void GestionarInventario() {
+    private static void GestionarInventario()
+    {
 
     }
 
-    private static void EliminarProductos() {
+    private static void EliminarProductos()
+    {
         Scanner sc = new Scanner(System.in);
         System.out.print( "Ingresa el código del producto que desees borrar: ");
         int codigo = sc.nextInt();
         sc.nextLine();
-            if (codigo < 0 || codigo >= i){
+            if (codigo < 0 || codigo >= i)
+            {
                 System.out.println( "Producto no encontrado" );
             }
-        for (int j = codigo; j < i - 1; j++) {
+        for (int j = codigo; j < i - 1; j++)
+        {
             NomProd[ j ] = NomProd[ j + 1 ];
             PrecProd[ j ] = PrecProd[ j + 1 ];
             ExistProd[ j ] = ExistProd[ j + 1 ];
