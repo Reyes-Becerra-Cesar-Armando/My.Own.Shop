@@ -4,16 +4,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class  MyOwnShop {
     public static int i = 0;
+    public static int e = 0;
     public static int Log = 0;
     public static String[] producto = new String[100];
     public static String[] NomProd = new String[100];
+    public static String[] arrventa = new String[100];
     public static double [] PrecProd = new double[100];
+    public static double PrecProduc;
+    public static String NomProduc;
     public static int[] ExistProd = new int[100];
     public static double[] PSug = new double[100];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         cargararchivo();
+        cargarreporte();
         System.out.println( " _____ ______       ___    ___      ________  ___       __   ________           ________  ___  ___  ________  ________   \n" +
                 "|\\   _ \\  _   \\    |\\  \\  /  /|    |\\   __  \\|\\  \\     |\\  \\|\\   ___  \\        |\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\   __  \\  \n" +
                 "\\ \\  \\\\\\__\\ \\  \\   \\ \\  \\/  / /    \\ \\  \\|\\  \\ \\  \\    \\ \\  \\ \\  \\\\ \\  \\       \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\  \\|\\  \\ \n" +
@@ -26,7 +31,7 @@ public class  MyOwnShop {
         System.out.println( "---------------------------------------------------------------------------------------------------------------------------" );
         int opcMenu = 0;
         while ( opcMenu != 4 ) {
-            System.out.println("¿A qué módulo deseas ingresar?\n1. Inventario\n2. Ventass\n3. Estadisticas\n4. Salir");
+            System.out.println("¿A qué módulo deseas ingresar?\n1. Inventario\n2. Ventas\n3. Estadisticas\n4. Salir");
             opcMenu = sc.nextInt();
             switch (opcMenu) {
                 case 1:
@@ -229,9 +234,6 @@ public class  MyOwnShop {
     {
         int vent = 0;
         System.out.println("Bienvenido al reporte de ventas");
-        String NomProduc;
-        int PrecProduc;
-        String[] arrventa = new String[100];
         int desci;
         do
         {
@@ -239,17 +241,19 @@ public class  MyOwnShop {
             Scanner scanner = new Scanner(System.in);
             NomProduc = scanner.next();
             System.out.println("ingresa el precio del producto vendido:");
-            PrecProduc = scanner.nextInt();
+            PrecProduc = scanner.nextDouble();
+            scanner.nextLine();
             System.out.println("¿deseas ingresar otro producto?\n1. si\n2. no");
             desci = scanner.nextInt();
-            arrventa[ vent ] = NomProduc +" "+ PrecProduc;
+            arrventa[ vent ] = NomProduc +" "+ PrecProduc + ";";
             vent++;
         }
         while (desci==1);
-        for (int e = 0; e < vent; e++)
+        for (e = 0; e < vent; e++)
         {
             System.out.println(arrventa[ e ]);
         }
+        guardarreporte();
     }
 
     private static void Inventario() {
@@ -382,7 +386,7 @@ public class  MyOwnShop {
             while ((linea = br.readLine()) != null) {
                 if (linea.trim().isEmpty()) continue;
                 String[] partes = linea.split(" \\| ");
-                if (partes.length != 5) continue; // Seguridad
+                if (partes.length != 5) continue;
                 int codigo = Integer.parseInt(partes[0].replace("Código:", "").trim());
                 String nombre = partes[1].replace("Nombre:", "").trim();
                 double precio = Double.parseDouble(partes[2].replace("Precio:", "").trim());
@@ -415,6 +419,48 @@ public class  MyOwnShop {
             System.out.println("Producto guardado correctamente");
         } catch (Exception e) {
             System.out.println("Error al guardar archivo: " + e.getMessage());
+        }
+    }
+
+    private static void cargarreporte(){
+        try {
+            File file = new File( "Reporte.txt" );
+            if ( !file.exists() ){
+                System.out.println( "Archivo no encontrado" );
+                return;
+            }
+            BufferedReader bf = new BufferedReader( new FileReader( file ) );
+            String linea;
+            linea = bf.readLine();
+            while ( linea != null ) {
+                if (linea.trim().isEmpty()) continue;
+                String[] parts = linea.split(";");
+                if (parts.length != 2) continue;
+                String nombre = parts[0].replace("Nombre: ", "").trim();
+                double precio = Double.parseDouble( parts [ 1 ].replace( "Precio: ", "").trim());
+                NomProduc = nombre;
+                PrecProduc = precio;
+                arrventa [ e ] = linea;
+                e++;
+            }
+            bf.close();
+            System.out.println( "Registro cargado correctamente" );
+        } catch ( Exception e){
+            System.out.println( "Error al cargar el reporte: " + e.getMessage());
+        }
+    }
+
+    private static void guardarreporte(){
+        try {
+            FileWriter fw = new FileWriter( "Reporte.txt" );
+            PrintWriter pw = new PrintWriter( fw );
+            for (int j = 0; j < e; j++) {
+                if ( arrventa[ j ] != null && !arrventa[ j ].isEmpty())
+                    pw.println(arrventa[ j ]);
+            }
+            pw.close();
+        } catch ( Exception e){
+            System.out.println( "Error: " + e.getMessage());
         }
     }
 }
