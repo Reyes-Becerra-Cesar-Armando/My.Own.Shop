@@ -72,7 +72,7 @@ public class MyOwnShop {
                 System.out.println("Elige una opción correcta");
                 break;
         }
-            
+
     }
 
     private static void Competidores() {
@@ -220,7 +220,7 @@ public class MyOwnShop {
         }
         int opcInventario = 0;
         while (opcInventario != 4 ) {
-            System.out.println("¿Qué desea realizar?\n1. Ver productos\n2. Eliminar productos\n3. Gestionar inventario\n4. Salir");
+            System.out.println("¿Qué desea realizar?\n1. Registrar productos\n2. Eliminar productos\n3. Gestionar inventario\n4. Salir");
             opcInventario = sc.nextInt();
             switch (opcInventario) {
                 case 1:
@@ -241,9 +241,32 @@ public class MyOwnShop {
         }
     }
 
-    private static void GestionarInventario() 
+    private static void GestionarInventario()
     {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa el código del producto:");
+        int codigo= sc.nextInt();
+        sc.nextLine();
+        System.out.println(producto[ codigo]);
+        if (producto [codigo] ==null){
+            System.out.println( "Producto no encontrado" );
+            return;
+        }
+        System.out.println("¿Deseas actualizar el precio del producto?\n[1] Sí\n[2] No");
+        int opcactualizar=  sc.nextInt();
+        sc.nextLine();
+        switch (opcactualizar) {
+            case 1:
+                System.out.print( "Ingrese el nuevo precio del producto: ");
+                PrecProd[ codigo ] = sc.nextDouble();
+                break;
+                case 2:
+                    System.out.println("Saliendo.........");
+                    break;
+                    default:
+                        break;
 
+        }
     }
 
     private static void EliminarProductos() {
@@ -277,33 +300,46 @@ public class MyOwnShop {
         guardararchivo();
     }
 
-    private static void Productos() {
+    private static void Productos()
+    {
         Scanner sc = new Scanner(System.in);
         int j = 0;
-        while ( j == 0 ) {
-            System.out.println( "Ingresa el nombre del producto: " );
-            NomProd[ i ] = sc.nextLine();
-            System.out.println( "Ingresa el precio del producto: " );
-            PrecProd[ i ] = sc.nextInt();
-            sc.nextLine();
-            PSug[ i ] = (double) (PrecProd[ i ] + (PrecProd[ i ] * 0.30 ));
-            System.out.println( "Ingresa el número existencias del producto: " );
-            ExistProd[ i ] = sc.nextInt();
-            sc.nextLine();
-            producto[i] = "Código: " + i + " | " + "Nombre: " + NomProd[i] + " | " + "Precio: " + PrecProd[i] + " | " + "Cantidad: " + ExistProd[i] + " | " + "Precio sugerido: " + PSug[i];
-            System.out.println( "¿Desea agregar más prodcutos?\n1. Si\n2. No");
-            int Elec = sc.nextInt();
-            sc.nextLine();
-            if (Elec == 2){
-                j++;
+        System.out.println("¿Qué deseas realizar?\n[1] Ver un producto registrado \n[2] Registrar un producto");
+        int opcionDelInventario = sc.nextInt();
+        sc.nextLine();
+        if(opcionDelInventario == 1){
+            System.out.println(producto[1]);
+        }
+        else {
+
+
+            while (j == 0) {
+                System.out.println("Ingresa el nombre del producto: ");
+                NomProd[i] = sc.nextLine();
+                System.out.println("Ingresa el precio del producto: ");
+                PrecProd[i] = sc.nextInt();
+                sc.nextLine();
+                PSug[i] = (double) (PrecProd[i] + (PrecProd[i] * 0.30));
+                System.out.println("Ingresa el número existencias del producto: ");
+                ExistProd[i] = sc.nextInt();
+                sc.nextLine();
+                producto[i] = "Código: " + i + " | " + "Nombre: " + NomProd[i] + " | " + "Precio: " + PrecProd[i] + " | " + "Cantidad: " + ExistProd[i] + " | " + "Precio sugerido: " + PSug[i];
+                System.out.println("¿Desea agregar más prodcutos?\n1. Si\n2. No");
+                int Elec = sc.nextInt();
+                sc.nextLine();
+                if (Elec == 2) {
+                    j++;
+                }
+                i++;
             }
-            i++;
+            for (int k = 0; k < i; k++) {
+                System.out.println(producto[k]);
+            }
+            guardararchivo();
         }
-        for ( int k = 0; k < i; k++)
-        {
-            System.out.println(producto[k]);
+        if(opcionDelInventario !=1 && opcionDelInventario!=2){
+            System.out.println("Ingresa una opción válida ");
         }
-        guardararchivo();
     }
 
     private static void LoginBasico( ) {
