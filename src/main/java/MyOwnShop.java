@@ -341,7 +341,6 @@ public class MyOwnShop {
             System.out.println("Ingresa una opción válida ");
         }
     }
-
     private static void LoginBasico( ) {
         Scanner sc = new Scanner(System.in);
         Log = 0;
