@@ -185,10 +185,16 @@ public class  MyOwnShop {
         }
     }
 
-    private static void ReporteMensual() {
+    private static void ReporteMensual()
+    {
+        System.out.println("filtrando ventas Mensuales");
+
     }
 
-    private static void ReporteSemanal() {
+    private static void ReporteSemanal()
+    {
+        System.out.println("filtrando ventas Semanales");
+
     }
 
     private static void Ventas() {
