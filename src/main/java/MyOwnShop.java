@@ -298,7 +298,28 @@ public class  MyOwnShop {
 
     private static void GestionarInventario() 
     {
-
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa el código del producto:");
+        int codigo= sc.nextInt();
+        sc.nextLine();
+        System.out.println(producto[ codigo]);
+        if (producto [codigo] ==null)
+        {
+            System.out.println( "Producto no encontrado" );
+            return;
+        }
+        System.out.println("¿Deseas actualizar el precio del producto?\n[1] Sí\n[2] No");
+        int opcactualizar= sc.nextInt();
+        sc.nextLine();
+        switch (opcactualizar)
+        {
+            case 1: System.out.print( "Ingrese el nuevo precio del producto: ");
+                PrecProd[ codigo ] = sc.nextDouble();
+                break; case 2: System.out.println("Saliendo.........");
+            break;
+            default:
+                break;
+        }
     }
 
     private static void EliminarProductos() {
