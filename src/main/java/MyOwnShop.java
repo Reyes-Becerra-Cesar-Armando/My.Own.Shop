@@ -296,8 +296,7 @@ public class  MyOwnShop {
         }
     }
 
-    private static void GestionarInventario() 
-    {
+    private static void GestionarInventario(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingresa el código del producto:");
         int codigo= sc.nextInt();
@@ -357,7 +356,7 @@ public class  MyOwnShop {
         Scanner sc = new Scanner(System.in);
         int j = 0;
         int k = 0;
-        System.out.println("¿Qué deseas hacer?\n1. Ver los productos registrados\n2. Agregar priductos");
+        System.out.println("¿Qué deseas hacer?\n1. Ver los productos registrados\n2. Agregar productos");
         int opcInventario = sc.nextInt();
         sc.nextLine();
         if (opcInventario == 2) {
@@ -406,7 +405,6 @@ public class  MyOwnShop {
         String usuario = sc.nextLine();
         System.out.print("Contraseña: ");
         String pass = sc.nextLine();
-        System.out.println( "Teclea 0000" );
         if (usuario.equals(usuarioCorrecto) && pass.equals(passwordCorrecta)) {
             System.out.println("Acceso permitido.");
             Log = 1;
