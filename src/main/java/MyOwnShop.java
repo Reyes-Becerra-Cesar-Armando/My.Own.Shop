@@ -357,7 +357,7 @@ public class  MyOwnShop {
         Scanner sc = new Scanner(System.in);
         int j = 0;
         int k = 0;
-        System.out.println("¿Qué deseas hacer?\n1. Ver los productos registrados\n2. Agregar priductos");
+        System.out.println("¿Qué deseas hacer?\n1. Ver los productos registrados\n2. Agregar productos");
         int opcInventario = sc.nextInt();
         sc.nextLine();
         if (opcInventario == 2) {
