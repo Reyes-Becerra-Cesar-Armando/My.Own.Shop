@@ -117,7 +117,7 @@ public class  MyOwnShop {
             MyPre = sc.nextInt();
             PrecCom[CONT] = ComPre - MyPre;
             CONT++;
-            System.out.println("deseas ingresar otro precio\n1. si\n2.no");
+            System.out.println("Deseas ingresar otro precio\n1. si\n2.no");
             otroprec = sc.nextInt();
 
            }while(otroprec ==1);
