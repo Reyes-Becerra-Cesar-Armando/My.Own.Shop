@@ -265,7 +265,6 @@ public class  MyOwnShop {
 
     private static void ReportedeVentas()
     {
-        cargarreporte();
         int vent = 0;
         int Código = 0;
         System.out.println("Bienvenido al reporte de ventas");
@@ -438,25 +437,41 @@ public class  MyOwnShop {
             Log = 1;
             
         }
-        else {
-            System.out.println("Usuario o contraseña incorrectos.");
-            System.out.println("¿Deseas salir?\n[1] Sí\n[2] No\"");
-            Scanner scanner = new Scanner(System.in);
-            int z;
-            z= scanner.nextInt();
-            switch (z)
+        else
+        {
+            BadPasword();
 
+        }
+    }
+
+    private static void BadPasword()
+    {
+        System.out.println("Usuario o contraseña incorrectos.");
+        System.out.println("¿Deseas salir?\n[1] Sí\n[2] No\"");
+        Scanner scanner = new Scanner(System.in);
+        int z = scanner.nextInt();
+        if (z == 1)
+        {
+            int opcmenu;
+            Scanner scanner1 = new Scanner(System.in);
+            System.out.println("¿A qué módulo deseas ingresar?\n1. Inventario\n2. Ventas\n3. Estadisticas\n4. Salir");
+            opcmenu = scanner1.nextInt();
+            switch (opcmenu)
             {
                 case 1:
+                    Inventario();
                     break;
                 case 2:
-                    LoginBasico();
+                    Ventas();
+                    break;
+                case 3:
+                    Estadisticas();
+                    break;
+                case 4:
+                    System.out.println("Saliendo...");
                 default:
                     break;
-
             }
-
-
 
         }
     }
