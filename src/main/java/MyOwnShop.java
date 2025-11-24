@@ -18,7 +18,6 @@ public class  MyOwnShop {
 
     public static void main(String[] args) {
         // ------------------Menú------------------//
-        cargararchivo();
         Scanner sc = new Scanner(System.in);
         System.out.println( " _____ ______       ___    ___      ________  ___       __   ________           ________  ___  ___  ________  ________   \n" +
                 "|\\   _ \\  _   \\    |\\  \\  /  /|    |\\   __  \\|\\  \\     |\\  \\|\\   ___  \\        |\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\   __  \\  \n" +
@@ -34,6 +33,7 @@ public class  MyOwnShop {
         while ( opcMenu != 4 ) {
             System.out.println("¿A qué módulo deseas ingresar?\n1. Inventario\n2. Ventas\n3. Estadisticas\n4. Salir");
             opcMenu = sc.nextInt();
+            sc.nextLine();
             switch (opcMenu) {
                 case 1:
                     Inventario();
@@ -157,10 +157,32 @@ public class  MyOwnShop {
         }
     }
 
-    private static void MenosVendidos()
-    {
-        System.out.println("Elegir que productos quieres ver 1.");
+    private static void MenosVendidos(){
+        System.out.println("Los poductos más vendidos son: ");
+        int aux = 0;
+        int[] arr = new int[ 100 ];
+        for ( int j = 0; j < arr.length; j++) {
+            arr [ j ] = cantidadventa[ j ];
+        }
+        for( int i1 = 0; i1 < arr.length; i1++ ) {
+            System.out.println( arr [ i1 ]);
+        }
+        System.out.println();
+        for( int j = 0; j < arr.length; j++ ) {
+            for (int k = j; k < arr.length; k++ ) {
+                if (arr[ j ] > arr[ k ]){
+                    aux = arr [ j ];
+                    arr [ j ] = arr [ k ];
+                    arr [ k ] = aux;
+                }
+            }
+        }
 
+        System.out.println( "Los códigos de los productos menos vendidos son: " );
+        for( int i1 = 0; i1 < arr.length; i1++ ) {
+            System.out.println( arr [ i1 ]);
+        }
+        System.out.println();
     }
 
     private static void MasVendidos() {
@@ -281,7 +303,6 @@ public class  MyOwnShop {
 
     private static void ReportedeVentas()
     {
-        cargarreporte();
         int vent = 0;
         int Código = 0;
         System.out.println("Bienvenido al reporte de ventas");
@@ -355,6 +376,7 @@ public class  MyOwnShop {
         {
             case 1: System.out.print( "Ingrese el nuevo precio del producto: ");
                 PrecProd[ codigo ] = sc.nextDouble();
+                producto[ codigo ] = "Código: " + codigo + " | " + "Nombre: " + NomProd[ codigo ] + " | " + "Precio: " + PrecProd[ codigo ] + " | " + "Cantidad: " + ExistProd[ codigo ] + " | " + "Precio sugerido: " + PSug[ codigo ] + " | " + "Veces vendido: " + cantidadventa [ codigo ];
                 break; case 2: System.out.println("Saliendo.........");
             break;
             default:
@@ -452,7 +474,6 @@ public class  MyOwnShop {
         if (usuario.equals(usuarioCorrecto) && pass.equals(passwordCorrecta)) {
             System.out.println("Acceso permitido.");
             Log = 1;
-            
         }
         else {
             System.out.println("Usuario o contraseña incorrectos.");
@@ -461,7 +482,6 @@ public class  MyOwnShop {
             int z;
             z= scanner.nextInt();
             switch (z)
-
             {
                 case 1:
                     break;
@@ -471,9 +491,6 @@ public class  MyOwnShop {
                     break;
 
             }
-
-
-
         }
     }
 
@@ -568,8 +585,8 @@ public class  MyOwnShop {
                     pw.println(arrventa[ j ]);
             }
             pw.close();
-        } catch ( Exception e){
-            System.out.println( "Error: " + e.getMessage());
+        } catch ( Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
