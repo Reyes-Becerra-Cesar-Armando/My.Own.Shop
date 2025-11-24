@@ -17,6 +17,7 @@ public class  MyOwnShop {
     public static double[] PSug = new double[100];
 
     public static void main(String[] args) {
+        // ------------------Menú------------------//
         cargararchivo();
         Scanner sc = new Scanner(System.in);
         System.out.println( " _____ ______       ___    ___      ________  ___       __   ________           ________  ___  ___  ________  ________   \n" +
@@ -52,6 +53,8 @@ public class  MyOwnShop {
     }
 
     private static void Estadisticas() {
+        //--------Ingreso al módulo de estadisticas----------------//
+        //---Login básico para que solo el administrador pueda entrar---//
         while ( Log == 0 ){
             LoginBasico();
         }
@@ -87,6 +90,7 @@ public class  MyOwnShop {
 
     private static void Competidores()
     {
+        //---Ingreso al submódulo de competidores---//
         Scanner sc = new Scanner(System.in);
         int seleccionado;
         System.out.println("¿Deseas comparar los precios de los competidores con los tuyos?");
@@ -101,6 +105,7 @@ public class  MyOwnShop {
 
     private static void precioCOMP()
     {
+        //---Método para comparar los precios con los de los competidores---//
         Scanner sc = new Scanner(System.in);
         int ComPre;
         int MyPre;
@@ -191,10 +196,25 @@ public class  MyOwnShop {
 
     }
 
-    private static void ReporteSemanal()
-    {
-        System.out.println("Filtrando ventas Semanales");
-
+    private static void ReporteSemanal() {
+        Scanner sc = new Scanner(System.in);
+        int vent = 0;
+        int[] ventadiaria = new int[ 7 ];
+        int TotalVenta = 0;
+        System.out.println("Ingrese el código del producto que desee regsitrar la venta semanal");
+        int codigo = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Producto: " + NomProd[codigo]);
+        System.out.println("----------------------------------------");
+        String[] dia = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+        for (int j = 0; j < dia.length; j++) {
+            System.out.println("Ingrese la venta del producto durante el día " + dia[ j ]);
+            ventadiaria[ vent ] = sc.nextInt();
+            sc.nextLine();
+            TotalVenta += ventadiaria [ vent ];
+            vent++;
+        }
+        System.out.println( "La venta semanal del producto: " + NomProd [ codigo ] + " es de: " + TotalVenta);
     }
 
     private static void Ventas() {
