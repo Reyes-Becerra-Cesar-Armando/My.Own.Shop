@@ -192,8 +192,23 @@ public class  MyOwnShop {
 
     private static void ReporteMensual()
     {
-        System.out.println("Filtrando ventas Mensuales");
-
+        Scanner sc = new Scanner(System.in);
+        int vent = 0;
+        int[] ventasemanal = new int[ 4 ];
+        int TotalVenta = 0;
+        System.out.println("Ingrese el código del producto que desee regsitrar para la venta mensual");
+        int codigo = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Producto: " + NomProd[codigo]);
+        System.out.println("----------------------------------------");
+        String[] semanas = {"Semana 1", "Semana 2", "Semana 3", "Semana 4"};
+        for (int j = 0; j < semanas.length; j++) {
+            System.out.println("Ingrese la venta del producto durante la " + semanas[j]);
+            ventasemanal[vent] = sc.nextInt();
+            sc.nextLine();
+            TotalVenta += ventasemanal[vent];
+            vent++;
+        }
     }
 
     private static void ReporteSemanal() {
@@ -328,7 +343,7 @@ public class  MyOwnShop {
         System.out.println(producto[ codigo]);
         if (producto [codigo] ==null)
         {
-            System.out.println( "Producto no encontrado" );
+            System.out.println( "Producto no encontrado." );
             return;
         }
         System.out.println("¿Deseas actualizar el precio del producto?\n[1] Sí\n[2] No");
@@ -352,10 +367,10 @@ public class  MyOwnShop {
         int codigo = sc.nextInt();
         sc.nextLine();
             if (codigo < 0 || codigo >= i){
-                System.out.println( "Producto no encontrado" );
+                System.out.println( "Producto no encontrado." );
                 return;
             }
-        System.out.println( "¿Estas seguro?\n1. Si\n2. No" );
+        System.out.println( "¿Estas seguro?\n1. Sí\n2. No" );
         int estado = sc.nextInt();
         sc.nextLine();
         if (estado == 1){
